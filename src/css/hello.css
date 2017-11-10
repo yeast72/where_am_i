@@ -1,0 +1,58 @@
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+
+.side-padding {
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+.centered-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 640px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  color: #4a4a4a;
+}
+
+tr {
+  border-top: 1px solid #ddd;
+}
+
+tr:first-child {
+  border-top: none;
+}
+
+td,
+th {
+  line-height: 1.5;
+  padding: 10px 5px;
+}
+
+th {
+  opacity: 0.5;
+  font-weight: normal;
+}
