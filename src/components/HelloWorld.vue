@@ -21,12 +21,38 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'HelloWorld',
+  name: 'Hi',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'sdfsdfs'
     }
+  },
+  methods: {
+    getInfoIP: function () {
+      console.log('ip')
+      axios.get('http://extreme-ip-lookup.com/json/158.108.216.5')
+      .then(response => {
+        console.log(response)
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    },
+    getIP: function () {
+      axios.get('http://freegeoip.net/json/')
+      .then(response => {
+        console.log(response)
+        this.getInfoIP()
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    }
+  },
+  created () {
+    this.getIP()
   }
 }
 </script>
