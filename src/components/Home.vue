@@ -30,21 +30,8 @@
           </tr>
         </tbody>
       </table>
-      <h2>Network Speed</h2>
-      <table class="table table-striped" style="text-align: center;" align="center" id="block-table">
-        <tbody>
-          <tr>
-            <th style="width: 33%;">Download Speed</th>
-            <th style="width: 34%;">Upload Speed</th>
-            <th style="width: 33%;">Ping</th>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+      <input id="textarea-ip" v-model="ip" placeholder="New ip address." class="header">
+      <input id="submit-btn" type="submit" class="btn btn_size_big btn_color_green btn_groupped_right" v-on:click="getNewIP(this.textarea-ip.value)">
       <p>
         "The average network speed for
         <b>...</b>
@@ -113,4 +100,37 @@ export default {
     this.getIP()
   }
 }
+// getInfoIP() {
+//     console.log('ip')
+//     axios.get('http://extreme-ip-lookup.com/json/158.108.216.5')
+//       .then(response => {
+//         console.log(response)
+//       })
+//       .catch(e => {
+//         console.log(e)
+//       })
+//   },
+//   getNewIP(ip) {
+//     console.log(ip + '!')
+//     var api = 'http://ip-api.com/json/' + this.ip
+//     axios.get(api)
+//       .then(response => {
+//         console.log(response)
+//         this.info.city = response.data.city
+//         this.info.network = response.data.as
+//         this.info.country = response.data.country
+//         this.info.countryCode = response.data.countryCode
+//         this.info.ip = response.data.query
+//         this.info.timezone = response.data.timezone
+//         this.info.lat = response.data.lat
+//         this.info.lon = response.data.lon
+//         this.info.zip = response.data.zip
+//         this.getInfoIP()
+//       })
+//       .catch(e => {
+//         console.log(e)
+//       })
+//   }
+// })
+// submit.getNewIP()
 </script>
