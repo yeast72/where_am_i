@@ -73,6 +73,7 @@ Vue.use(VueGoogleMaps, {
     key: 'AIzaSyCNQ60BFvx4nY-EpQVOJ8w3q3v42XsKQe8'
   }
 })
+
 export default {
   name: 'Hi',
   data () {

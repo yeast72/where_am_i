@@ -146,3 +146,10 @@ button, input, optgroup, select, textarea {
     vertical-align: middle;
     font-family: Open Sans;
 }
+
+#footer {
+    display: block;
+    padding: 20px 0;
+    background: #4DECB8;
+    width: 100%;
+}
