@@ -20,38 +20,46 @@
         <tbody>
           <tr>
             <td>Network</td>
-            <td>{{ info.network }}</td>
+            <td v-if="info.network === ''">Doesn't found!</td>
+            <td v-else>{{ info.network }}</td>
           </tr>
           <tr>
             <td>IP Name</td>
-            <td> {{ info.ipName }} </td>
+            <td v-if="info.ipName === ''">Doesn't found!</td>
+            <td v-else>{{ info.ipName }}</td>
           </tr>
           <tr>
             <td>IP Type</td>
-            <td> {{ info.ipType}} </td>
+            <td v-if="info.ipType === ''">Doens't found!</td>
+            <td v-else>{{ info.ipType}}</td>
           </tr>
           <tr>
             <td>City</td>
-            <td>
+            <td v-if="info.city === ''">Doesn't found!</td>
+            <td v-else>
               <a class="flag flag-th"></a>
               {{ info.city }}
             </td>
           </tr>
           <tr>
             <td>Coutry</td>
-            <td> {{info.country}} / {{ info.countryCode }} </td>
+            <td v-if="info.country === '' && info.countryCode === ''">Doesn't found!</td>
+            <td v-else>{{info.country}} / {{ info.countryCode }}</td>
           </tr>
           <tr>
             <td>Continent</td>
-            <td>{{info.continent}} </td>
+            <td v-if="info.continent === ''">Doesn't found!</td>
+            <td v-else>{{info.continent}}</td>
           </tr>
           <tr>
             <td>Latitude/Longitude</td>
-            <td> {{info.lat}} / {{info.lon}} </td>
+            <td v-if="info.lat === '' && info.lon === ''">Doesn't found!</td>
+            <td v-else>{{info.lat}} / {{info.lon}}</td>
           </tr>
           <tr>
             <td>Postal Code</td>
-            <td> {{ info.zip }} </td>
+            <td v-if="info.zip === ''">Does not found!</td>
+            <td v-else>{{ info.zip }}</td>
           </tr>
         </tbody>
       </table>
