@@ -35,6 +35,7 @@ table {
   width: 100%;
   text-align: left;
   color: #4a4a4a;
+  border-collapse: collapse;
 }
 
 tr {
@@ -124,12 +125,6 @@ button, input, optgroup, select, textarea {
     font-size: 16px;
     font-weight: 300;
     padding: 0px 30px;
-}
-
-button, input, optgroup, select, textarea {
-    color: inherit;
-    font: inherit;
-    margin: 0;
 }
 
 .btn {

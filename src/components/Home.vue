@@ -1,12 +1,12 @@
 <template>
-  <div class="hello">
+  <div class="hello" align="center">
     <h1>{{ msg }}</h1>
     <h2 id="ip_header">This is your ip {{info.ip}} </h2>
     <section class="centered-container side-padding">
       <gmap-map
       :center="center"
       :zoom="7"
-      style="width: 500px; height: 300px">
+      style="width: 620px; height: 300px">
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
@@ -16,6 +16,7 @@
         @click="center=m.position"
       ></gmap-marker>
     </gmap-map>
+    <br>
       <table class="table table-striped" align="center">
         <tbody>
           <tr>
@@ -63,6 +64,7 @@
           </tr>
         </tbody>
       </table>
+      <br>
       <input id="textarea-ip" v-model="newIP" placeholder="New ip address or website" class="header">
       <input id="submit-btn" type="submit" class="btn btn_color_green btn_groupped_right" v-on:click="getIP(newIP)">
         <p/>See how your own network speed compares at
