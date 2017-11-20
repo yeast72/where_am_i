@@ -8,13 +8,8 @@
       :zoom="7"
       style="width: 620px; height: 300px">
       <gmap-marker
-        :key="index"
-        v-for="(m, index) in markers"
-        :position="m.position"
-        :clickable="true"
-        :draggable="true"
-        @click="center=m.position"
-      ></gmap-marker>
+        :position="{lat: this.info.lat, lng: this.info.lon}">
+      </gmap-marker>
     </gmap-map>
     <br>
       <table class="table table-striped" align="center">
@@ -53,7 +48,7 @@
             <td v-else>{{info.continent}}</td>
           </tr>
           <tr>
-            <td>Latitude/Longitude</td>
+            <td>Latitude / Longitude</td>
             <td v-if="info.lat === '' && info.lon === ''">Doesn't found!</td>
             <td v-else>{{info.lat}} / {{info.lon}}</td>
           </tr>
@@ -71,24 +66,19 @@
         <a href="http://speedsmart.net/?ipinfo">speedsmart.net</a>
       </p>
     </section>
+    <v-dialog/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Vue from 'vue'
-import * as VueGoogleMaps from 'vue2-google-maps'
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: 'AIzaSyCNQ60BFvx4nY-EpQVOJ8w3q3v42XsKQe8'
-  }
-})
 
 export default {
   name: 'Hi',
   data () {
     return {
       msg: 'Welcome to Where am I',
+      error: '',
       info: {
         ip: '',
         city: '',
@@ -104,8 +94,8 @@ export default {
         ipType: ''
       },
       newIP: '',
-      center: {lat: '', lng: ''},
-      markers: [{position: {lat: '', lng: ''}}, {position: {lat: 11.0, lng: 11.0}}]
+      center: {lat: '13.8362', lng: '100.5630'},
+      markers: [{position: {lat: '', lng: ''}}]
     }
   },
   methods: {
@@ -116,8 +106,6 @@ export default {
         this.info.ipName = response.data.ipName
         this.info.ipType = response.data.ipType
         this.info.timezone = response.data.timezone
-        this.info.lat = response.data.lat
-        this.info.lon = response.data.lon
         this.info.country = response.data.country
         this.info.continent = response.data.continent
         this.info.countryCode = response.data.countryCode
@@ -130,21 +118,49 @@ export default {
       axios.get('http://ip-api.com/json/' + ip)
       .then(response => {
         console.log(response)
-        this.info.network = response.data.as
-        this.info.ip = response.data.query
-        this.info.zip = response.data.zip
-        this.info.city = response.data.city
-        this.center.lat = parseFloat(response.data.lat)
-        this.center.lng = parseFloat(response.data.lon)
-        this.markers[0].lat = parseFloat(response.data.lat)
-        this.markers[0].lng = parseFloat(response.data.lon)
-        this.markers[1].lat = parseFloat(response.data.lat) + 1
-        this.markers[1].lng = parseFloat(response.data.lon) + 1
-        this.getInfoIP(this.info.ip)
+        if (response.data.status === 'success') {
+          this.info.network = response.data.as
+          this.info.ip = response.data.query
+          this.info.zip = response.data.zip
+          this.info.city = response.data.city
+          this.info.lon = response.data.lon
+          this.info.lat = response.data.lat
+          this.center.lat = parseFloat(response.data.lat)
+          this.center.lng = parseFloat(response.data.lon)
+          this.markers[0].lat = parseFloat(response.data.lat)
+          this.markers[0].lng = parseFloat(response.data.lon)
+          // this.markers[1].lat = parseFloat(response.data.lat + 1)
+          // this.markers[1].lng = parseFloat(response.data.lon + 1)
+          this.getInfoIP(this.info.ip)
+        } else {
+          this.error = response.data.message.toUpperCase()
+          this.show()
+        }
       })
       .catch(e => {
         console.log(e)
       })
+    },
+    show: function () {
+      if (this.error === 'PRIVATE RANGE') {
+        this.$modal.show('dialog', {
+          title: 'Your IP Address is in PRIVATE RANGES',
+          text: 'A private IP address is an IP address that is reserved for internal use behind a router or other Network Address Translation (NAT) device, apart from the public.' +
+          'The Internet Assigned Numbers Authority (IANA) reserves the following IP address blocks for use as private IP addresses' +
+          ' 10.0.0.0 to 10.255.255.255, 172.16.0.0 to 172.31.255.255, 192.168.0.0 to 192.168.255.255',
+          buttons: [
+            { title: 'Close' }
+          ]
+        })
+      } else {
+        this.$modal.show('dialog', {
+          title: 'Sorry, something went wrong!',
+          text: 'Try Again',
+          buttons: [
+            { title: 'Close' }
+          ]
+        })
+      }
     }
   },
   created () {

@@ -148,3 +148,7 @@ button, input, optgroup, select, textarea {
     background: #4DECB8;
     width: 100%;
 }
+
+.v--modal-overlay .v--modal-box {
+   position: absolute;
+}
