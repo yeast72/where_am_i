@@ -139,7 +139,7 @@ button, input, optgroup, select, textarea {
     font-size: 18px;
     border: none;
     vertical-align: middle;
-    font-family: Open Sans;
+    /* font-family: Open Sans; */
 }
 
 #footer {
