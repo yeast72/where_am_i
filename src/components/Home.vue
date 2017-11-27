@@ -55,7 +55,7 @@
         </tbody>
       </table>
       <br>
-      <input id="textarea-ip" v-model="newIP" placeholder="New ip address" class="header">
+      <input id="textarea-ip" v-model="newIP" placeholder="New ip address" class="header" v-on:keyup.enter="getIP(newIP)">
       <input id="submit-btn" type="submit" class="btn btn_color_green btn_groupped_right" v-on:click="getIP(newIP)">
         <p/>See how your own network speed compares at
         <a href="http://speedsmart.net/?ipinfo">speedsmart.net</a>
